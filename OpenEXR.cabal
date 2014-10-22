@@ -22,7 +22,8 @@ source-repository head
 
 library
   build-depends:
-    base >= 4.3      && < 5
+    base >= 4.3      && < 5,
+    linear
 
   c-sources: cbits/half.c
 
@@ -34,3 +35,4 @@ library
 
   -- TODO: autotools?
   extra-libraries: IlmImf
+

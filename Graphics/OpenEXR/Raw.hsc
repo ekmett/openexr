@@ -4,13 +4,15 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Graphics.OpenEXR.Raw where
 
-import Graphics.OpenEXR.Half
 import Foreign.C
 import Foreign.C.Types
 import Foreign.Ptr
-import Foreign.Storable
+import Graphics.OpenEXR.Half
+import Linear.V4
 
 #include <ImfCRgbaFile.h>
+
+type RGBA = V4 Half
 
 -- <https://github.com/openexr/openexr/issues/140>
 #ifndef IMF_RANDOM_Y
