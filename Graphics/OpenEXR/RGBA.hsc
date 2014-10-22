@@ -4,31 +4,27 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 module Graphics.OpenEXR.RGBA where
 
-import Data.Bits
-import Data.Function (on)
-import Data.Word
-import Foreign.Ptr
-import Foreign.C.Types
 import Foreign.Storable
+import Graphics.OpenEXR.Half
 
 #include <ImfCRgbaFile.h>
 
-data RGBA = RGBA !Half !Half !Half !Half deriving (Eq,Show)
+data RGBA = RGBA !Half !Half !Half !Half deriving (Eq,Ord,Show)
 
 instance Storable RGBA where
-  sizeOf _ = (#size ImgRgba)
+  sizeOf _ = (#size ImfRgba)
   alignment = sizeOf
   peek p = do
-    r <- (#peek ImgRgba, r) p
-    g <- (#peek ImgRgba, g) p
-    b <- (#peek ImgRgba, b) p
-    a <- (#peek ImgRgba, a) p
+    r <- (#peek ImfRgba, r) p
+    g <- (#peek ImfRgba, g) p
+    b <- (#peek ImfRgba, b) p
+    a <- (#peek ImfRgba, a) p
     return $! RGBA r g b a
   poke p (RGBA r g b a) = do
-    (#poke ImgRgba, r) p r
-    (#poke ImgRgba, g) p g
-    (#poke ImgRgba, b) p b
-    (#poke ImgRgba, a) p a
+    (#poke ImfRgba, r) p r
+    (#poke ImfRgba, g) p g
+    (#poke ImfRgba, b) p b
+    (#poke ImfRgba, a) p a
 
 instance Num RGBA where
   RGBA a b c d + RGBA a' b' c' d' = RGBA (a + a') (b + b') (c + c') (d + d')
