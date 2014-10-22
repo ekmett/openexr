@@ -229,3 +229,5 @@ foreign import ccall "OpenEXR/ImfCRgbaFile.h ImfNewRound12logLut" newRound12logL
 foreign import ccall "OpenEXR/ImfCRgbaFile.h ImfNewRoundNBitLut" newRoundNBitLut :: CUInt -> CInt -> IO Lut
 foreign import ccall "OpenEXR/ImfCRgbaFile.h ImfDeleteLut" deleteLut :: Lut -> IO ()
 foreign import ccall "OpenEXR/ImfCRgbaFile.h ImfApplyLut" applyLut :: Lut -> Ptr Rgba -> CInt -> CInt -> IO ()
+
+foreign import ccall "OpenEXR/ImfCRgbaFile.h ImfErrorMessage" errorMessage :: IO CString
