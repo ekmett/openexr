@@ -22,8 +22,8 @@ type Half = (#type ImfHalf)
 foreign import unsafe ccall "c_floatToHalf" floatToHalf :: CFloat -> Half
 foreign import unsafe ccall "ImfHalfToFloat" halfToFloat :: Half -> CFloat
 
-foreign import unsafe ccall "ImfFloatToHalfArray" floatToHalfArray :: CInt -> Ptr Float -> Ptr Half -> IO ()
-foreign import unsafe ccall "ImgHalfToFloatArray" halfToFloatArray :: CInt -> Ptr Half -> Ptr Float -> IO ()
+foreign import unsafe ccall "ImfFloatToHalfArray" floatToHalfArray :: CInt -> Ptr CFloat -> Ptr Half -> IO ()
+foreign import unsafe ccall "ImfHalfToFloatArray" halfToFloatArray :: CInt -> Ptr Half -> Ptr CFloat -> IO ()
 
 data Rgba = Rgba { rgba_r, rgba_g, rgba_b, rgba_a :: Half } deriving (Eq,Show)
 
