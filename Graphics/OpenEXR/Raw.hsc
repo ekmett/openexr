@@ -17,27 +17,14 @@ import Foreign.Storable
 #define IMF_RANDOM_Y IMF_RAMDOM_Y
 #endif
 
-data Rgba = Rgba { rgba_r, rgba_g, rgba_b, rgba_a :: Half } deriving (Eq,Show)
-
-instance Storable Rgba where
-  sizeOf _ = (#size ImfRgba)
-  alignment = sizeOf
-  peek p = do
-    r <- (#peek ImfRgba, r) p
-    g <- (#peek ImfRgba, g) p
-    b <- (#peek ImfRgba, b) p
-    a <- (#peek ImfRgba, a) p
-    return $! Rgba r g b a
-  poke p (Rgba r g b a) = do
-    (#poke ImfRgba, r) p r
-    (#poke ImfRgba, g) p g
-    (#poke ImfRgba, b) p b
-    (#poke ImfRgba, a) p a
-
--- | Magic number; this must be the same as Imf::MAGIC
+-- | Magic number
+--
+-- same as Imf::MAGIC
 pattern MAGIC = (#const IMF_MAGIC)
 
--- | Version number; this must be the same as Imf::EXR_VERSION
+-- | Version number
+--
+-- same as Imf::EXR_VERSION
 pattern VERSION_NUMBER = (#const IMF_VERSION_NUMBER)
 
 -- * Line order; values must the the same as in Imf::LineOrder.
@@ -46,7 +33,7 @@ type LineOrder = CInt
 
 pattern INCREASING_Y = (#const IMF_INCREASING_Y) :: LineOrder
 pattern DECREASING_Y = (#const IMF_DECREASING_Y) :: LineOrder
-pattern RANDOM_Y     = (#const IMF_RANDOM_Y) :: LineOrder
+pattern RANDOM_Y     = (#const IMF_RANDOM_Y)     :: LineOrder
 
 -- * Compression types; values must be the same as in Imf::Compression.
 type Compression = CInt
@@ -61,21 +48,21 @@ pattern B44_COMPRESSION   = (#const IMF_B44_COMPRESSION) :: Compression
 pattern B44A_COMPRESSION  = (#const IMF_B44A_COMPRESSION) :: Compression
 
 -- * Channels; values must be the same as in Imf::RgbaChannels. 
-pattern WRITE_R = (#const IMF_WRITE_R)
-pattern WRITE_G = (#const IMF_WRITE_G)
-pattern WRITE_B = (#const IMF_WRITE_B)
-pattern WRITE_A = (#const IMF_WRITE_A)
-pattern WRITE_Y = (#const IMF_WRITE_Y)
-pattern WRITE_C = (#const IMF_WRITE_C)
-pattern WRITE_RGB = (#const IMF_WRITE_RGB)
+pattern WRITE_R    = (#const IMF_WRITE_R)
+pattern WRITE_G    = (#const IMF_WRITE_G)
+pattern WRITE_B    = (#const IMF_WRITE_B)
+pattern WRITE_A    = (#const IMF_WRITE_A)
+pattern WRITE_Y    = (#const IMF_WRITE_Y)
+pattern WRITE_C    = (#const IMF_WRITE_C)
+pattern WRITE_RGB  = (#const IMF_WRITE_RGB)
 pattern WRITE_RGBA = (#const IMF_WRITE_RGBA)
-pattern WRITE_YC = (#const IMF_WRITE_YC)
-pattern WRITE_YA = (#const IMF_WRITE_YA)
-pattern WRITE_YCA = (#const IMF_WRITE_YCA)
+pattern WRITE_YC   = (#const IMF_WRITE_YC)
+pattern WRITE_YA   = (#const IMF_WRITE_YA)
+pattern WRITE_YCA  = (#const IMF_WRITE_YCA)
 
 -- * Level modes; values must be the same as in Imf::LevelMode
 
-pattern ONE_LEVEL = (#const IMF_ONE_LEVEL)
+pattern ONE_LEVEL     = (#const IMF_ONE_LEVEL)
 pattern MIPMAP_LEVELS = (#const IMF_MIPMAP_LEVELS)
 pattern RIPMAP_LEVELS = (#const IMF_RIPMAP_LEVELS)
 
@@ -178,7 +165,7 @@ foreign import ccall unsafe "ImfOpenOutputFile" openOutputFile :: CString -> Hea
 foreign import ccall unsafe "ImfCloseOutputFile" closeOutputFile :: OutputFile -> IO CInt
 
 -- | @outputSetFrameBuffer out base xStride yStride@
-foreign import ccall unsafe "ImfOutputSetFrameBuffer" outputSetFrameBuffer :: OutputFile -> Ptr Rgba -> Ptr CSize -> Ptr CSize -> IO CInt
+foreign import ccall unsafe "ImfOutputSetFrameBuffer" outputSetFrameBuffer :: OutputFile -> Ptr RGBA -> Ptr CSize -> Ptr CSize -> IO CInt
 foreign import ccall unsafe "ImfOutputWritePixels" outputWritePixels :: OutputFile -> CInt -> IO CInt
 
 foreign import ccall unsafe "ImfOutputCurrentScanLine" outputCurrentScanLine :: OutputFile -> IO CInt
@@ -198,7 +185,7 @@ type InputFile = Ptr OpaqueInputFile
 foreign import ccall unsafe "ImfOpenInputFile" openInputFile :: CString -> IO InputFile
 foreign import ccall unsafe "ImfCloseInputFile" closeInputFile :: InputFile -> IO CInt
 -- | @inputSetFrameBuffer inputFile base xStride yStride@
-foreign import ccall unsafe "ImfInputSetFrameBuffer" inputSetFrameBuffer :: InputFile -> Ptr Rgba -> CSize -> CSize -> IO CInt
+foreign import ccall unsafe "ImfInputSetFrameBuffer" inputSetFrameBuffer :: InputFile -> Ptr RGBA -> CSize -> CSize -> IO CInt
 -- | @inputReadPixels input scanLine1 scanLine2@
 foreign import ccall unsafe "ImfInputReadPixels" inputReadPixels :: InputFile -> CInt -> CInt -> IO CInt
 foreign import ccall unsafe "ImfInputHeader" inputHeader :: InputFile -> IO Header
@@ -221,6 +208,6 @@ type Lut = Ptr OpaqueLut
 foreign import ccall unsafe "ImfNewRound12logLut" newRound12logLut :: CInt -> IO Lut
 foreign import ccall unsafe "ImfNewRoundNBitLut" newRoundNBitLut :: CUInt -> CInt -> IO Lut
 foreign import ccall unsafe "ImfDeleteLut" deleteLut :: Lut -> IO ()
-foreign import ccall unsafe "ImfApplyLut" applyLut :: Lut -> Ptr Rgba -> CInt -> CInt -> IO ()
+foreign import ccall unsafe "ImfApplyLut" applyLut :: Lut -> Ptr RGBA -> CInt -> CInt -> IO ()
 
 foreign import ccall unsafe "ImfErrorMessage" errorMessage :: IO CString
