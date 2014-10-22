@@ -3,6 +3,13 @@ Haskell Raw OpenEXR Bindings
 
 Low-level OpenEXR Bindings
 
+What works for me:
+
+```
+brew install openexr
+cabal install --extra-lib-dirs=/usr/local/Cellar/openexr/2.1.0/lib/ --extra-include-dirs=/usr/local/Cellar/openexr/2.1.0/include/OpenEXR/
+```
+
 Contact Information
 -------------------
 
