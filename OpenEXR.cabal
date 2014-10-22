@@ -1,0 +1,33 @@
+name:          OpenEXR
+category:      Graphics
+version:       0.1
+license:       BSD3
+cabal-version: >= 1.8
+license-file:  LICENSE
+author:        Edward A. Kmett
+maintainer:    Edward A. Kmett <ekmett@gmail.com>
+stability:     experimental
+homepage:      http://github.com/ekmett/openexr/
+bug-reports:   http://github.com/ekmett/openexr/issues
+copyright:     Copyright (C) 2014 Edward A. Kmett
+build-type:    Simple
+tested-with:   GHC == 7.8.3
+synopsis:      Bindings to Industrial Light & Magic's OpenEXR high dynamic-range file format.
+description:
+  OpenEXR is a high dynamic-range (HDR) image file format developed by Industrial Light & Magic for use in computer imaging applications.
+
+source-repository head
+  type: git
+  location: git://github.com/ekmett/openexr.git
+
+library
+  build-depends:
+    base >= 4.3      && < 5
+
+  exposed-modules:
+    Graphics.OpenEXR.Raw
+
+  ghc-options: -Wall -fwarn-tabs -O2
+
+  -- TODO: autotools?
+  extra-libraries: IlmImf
