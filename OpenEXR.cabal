@@ -24,6 +24,8 @@ library
   build-depends:
     base >= 4.3      && < 5
 
+  c-sources: cbits/half.c
+
   exposed-modules:
     Graphics.OpenEXR.Raw
 
