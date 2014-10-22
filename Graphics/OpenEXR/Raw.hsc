@@ -4,7 +4,7 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Graphics.OpenEXR.Raw where
 
-import Data.Word
+import Graphics.OpenEXR.Half
 import Foreign.C
 import Foreign.C.Types
 import Foreign.Ptr
@@ -16,14 +16,6 @@ import Foreign.Storable
 #ifndef IMF_RANDOM_Y
 #define IMF_RANDOM_Y IMF_RAMDOM_Y
 #endif
-
-type Half = (#type ImfHalf)
-
-foreign import unsafe ccall "c_floatToHalf" floatToHalf :: CFloat -> Half
-foreign import unsafe ccall "ImfHalfToFloat" halfToFloat :: Half -> CFloat
-
-foreign import unsafe ccall "ImfFloatToHalfArray" floatToHalfArray :: CInt -> Ptr CFloat -> Ptr Half -> IO ()
-foreign import unsafe ccall "ImfHalfToFloatArray" halfToFloatArray :: CInt -> Ptr Half -> Ptr CFloat -> IO ()
 
 data Rgba = Rgba { rgba_r, rgba_g, rgba_b, rgba_a :: Half } deriving (Eq,Show)
 
