@@ -22,17 +22,14 @@ source-repository head
 
 library
   build-depends:
-    base >= 4.3      && < 5,
+    base >= 4.3 && < 5,
+    half >= 0.2 && < 0.3,
     linear
 
-  c-sources: cbits/half.c
-
   exposed-modules:
-    Graphics.OpenEXR.Half
     Graphics.OpenEXR.Raw
 
   ghc-options: -Wall -fwarn-tabs -O2
 
-  -- TODO: autotools?
   extra-libraries: IlmImf
 

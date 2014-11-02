@@ -7,7 +7,7 @@ module Graphics.OpenEXR.Raw where
 import Foreign.C
 import Foreign.C.Types
 import Foreign.Ptr
-import Graphics.OpenEXR.Half
+import Numeric.Half
 import Linear.V4
 
 #include <ImfCRgbaFile.h>
