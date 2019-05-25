@@ -1,13 +1,13 @@
-Haskell Raw OpenEXR Bindings
-============================
+openexr
+=======
 
-Low-level OpenEXR Bindings
+This package provides low-level OpenEXR bindings to Pixar's OpenEXR HDR imaging library.
 
 What works for me:
 
 ```
 brew install openexr
-cabal install --extra-lib-dirs=/usr/local/Cellar/openexr/2.1.0/lib/ --extra-include-dirs=/usr/local/Cellar/openexr/2.1.0/include/OpenEXR/
+cabal install --extra-lib-dirs=/usr/local/Cellar/openexr/2.3.0/lib/ --extra-include-dirs=/usr/local/Cellar/openexr/2.3.0/include/OpenEXR/
 ```
 
 Contact Information

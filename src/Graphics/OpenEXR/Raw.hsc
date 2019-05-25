@@ -5,7 +5,6 @@
 module Graphics.OpenEXR.Raw where
 
 import Foreign.C
-import Foreign.C.Types
 import Foreign.Ptr
 import Numeric.Half
 import Linear.V4
@@ -22,56 +21,109 @@ type RGBA = V4 Half
 -- | Magic number
 --
 -- same as Imf::MAGIC
-pattern MAGIC = (#const IMF_MAGIC)
+
+pattern MAGIC :: CInt
+pattern MAGIC = #const IMF_MAGIC
 
 -- | Version number
 --
 -- same as Imf::EXR_VERSION
-pattern VERSION_NUMBER = (#const IMF_VERSION_NUMBER)
+
+pattern VERSION_NUMBER :: CInt
+pattern VERSION_NUMBER = #const IMF_VERSION_NUMBER
 
 -- * Line order; values must the the same as in Imf::LineOrder.
 
 type LineOrder = CInt
 
-pattern INCREASING_Y = (#const IMF_INCREASING_Y) :: LineOrder
-pattern DECREASING_Y = (#const IMF_DECREASING_Y) :: LineOrder
-pattern RANDOM_Y     = (#const IMF_RANDOM_Y)     :: LineOrder
+pattern INCREASING_Y :: LineOrder
+pattern INCREASING_Y = #const IMF_INCREASING_Y
+
+pattern DECREASING_Y :: LineOrder
+pattern DECREASING_Y = #const IMF_DECREASING_Y
+
+pattern RANDOM_Y :: LineOrder
+pattern RANDOM_Y     = #const IMF_RANDOM_Y
 
 -- * Compression types; values must be the same as in Imf::Compression.
 type Compression = CInt
 
-pattern NO_COMPRESSION    = (#const IMF_NO_COMPRESSION) :: Compression
-pattern RLE_COMPRESSION   = (#const IMF_RLE_COMPRESSION) :: Compression
-pattern ZIPS_COMPRESSION  = (#const IMF_ZIPS_COMPRESSION) :: Compression
-pattern ZIP_COMPRESSION   = (#const IMF_ZIP_COMPRESSION) :: Compression
-pattern PIZ_COMPRESSION   = (#const IMF_PIZ_COMPRESSION) :: Compression
-pattern PXR24_COMPRESSION = (#const IMF_PXR24_COMPRESSION) :: Compression
-pattern B44_COMPRESSION   = (#const IMF_B44_COMPRESSION) :: Compression
-pattern B44A_COMPRESSION  = (#const IMF_B44A_COMPRESSION) :: Compression
+pattern NO_COMPRESSION :: Compression
+pattern NO_COMPRESSION    = #const IMF_NO_COMPRESSION
+
+pattern RLE_COMPRESSION :: Compression
+pattern RLE_COMPRESSION   = #const IMF_RLE_COMPRESSION
+
+pattern ZIPS_COMPRESSION :: Compression
+pattern ZIPS_COMPRESSION  = #const IMF_ZIPS_COMPRESSION 
+
+pattern ZIP_COMPRESSION :: Compression
+pattern ZIP_COMPRESSION   = #const IMF_ZIP_COMPRESSION
+
+pattern PIZ_COMPRESSION :: Compression
+pattern PIZ_COMPRESSION   = #const IMF_PIZ_COMPRESSION
+
+pattern PXR24_COMPRESSION :: Compression
+pattern PXR24_COMPRESSION = #const IMF_PXR24_COMPRESSION
+
+pattern B44_COMPRESSION :: Compression
+pattern B44_COMPRESSION   = #const IMF_B44_COMPRESSION
+
+pattern B44A_COMPRESSION :: Compression
+pattern B44A_COMPRESSION  = #const IMF_B44A_COMPRESSION
 
 -- * Channels; values must be the same as in Imf::RgbaChannels. 
-pattern WRITE_R    = (#const IMF_WRITE_R)
-pattern WRITE_G    = (#const IMF_WRITE_G)
-pattern WRITE_B    = (#const IMF_WRITE_B)
-pattern WRITE_A    = (#const IMF_WRITE_A)
-pattern WRITE_Y    = (#const IMF_WRITE_Y)
-pattern WRITE_C    = (#const IMF_WRITE_C)
-pattern WRITE_RGB  = (#const IMF_WRITE_RGB)
-pattern WRITE_RGBA = (#const IMF_WRITE_RGBA)
-pattern WRITE_YC   = (#const IMF_WRITE_YC)
-pattern WRITE_YA   = (#const IMF_WRITE_YA)
-pattern WRITE_YCA  = (#const IMF_WRITE_YCA)
+pattern WRITE_R ::CInt
+pattern WRITE_R = #const IMF_WRITE_R
+
+pattern WRITE_G ::CInt
+pattern WRITE_G = #const IMF_WRITE_G
+
+pattern WRITE_B ::CInt
+pattern WRITE_B = #const IMF_WRITE_B
+
+pattern WRITE_A ::CInt
+pattern WRITE_A    = #const IMF_WRITE_A
+
+pattern WRITE_Y ::CInt
+pattern WRITE_Y    = #const IMF_WRITE_Y
+
+pattern WRITE_C ::CInt
+pattern WRITE_C    = #const IMF_WRITE_C
+
+pattern WRITE_RGB ::CInt
+pattern WRITE_RGB  = #const IMF_WRITE_RGB
+
+pattern WRITE_RGBA ::CInt
+pattern WRITE_RGBA = #const IMF_WRITE_RGBA
+
+pattern WRITE_YC ::CInt
+pattern WRITE_YC   = #const IMF_WRITE_YC
+
+pattern WRITE_YA ::CInt
+pattern WRITE_YA   = #const IMF_WRITE_YA
+
+pattern WRITE_YCA ::CInt
+pattern WRITE_YCA  = #const IMF_WRITE_YCA
 
 -- * Level modes; values must be the same as in Imf::LevelMode
 
-pattern ONE_LEVEL     = (#const IMF_ONE_LEVEL)
-pattern MIPMAP_LEVELS = (#const IMF_MIPMAP_LEVELS)
-pattern RIPMAP_LEVELS = (#const IMF_RIPMAP_LEVELS)
+pattern ONE_LEVEL :: CInt
+pattern ONE_LEVEL = #const IMF_ONE_LEVEL
+
+pattern MIPMAP_LEVELS :: CInt
+pattern MIPMAP_LEVELS = #const IMF_MIPMAP_LEVELS
+
+pattern RIPMAP_LEVELS :: CInt
+pattern RIPMAP_LEVELS = #const IMF_RIPMAP_LEVELS
 
 -- * Level rounding modes; values must be the same as in Imf::LevelRoundingMode
 
-pattern ROUND_DOWN = (#const IMF_ROUND_DOWN)
-pattern ROUND_UP   = (#const IMF_ROUND_UP)
+pattern ROUND_DOWN :: CInt
+pattern ROUND_DOWN = #const IMF_ROUND_DOWN
+
+pattern ROUND_UP :: CInt
+pattern ROUND_UP   = #const IMF_ROUND_UP
 
 -- * Headers
 
