@@ -24,8 +24,9 @@ source-repository head
   location: git://github.com/ekmett/openexr.git
 
 library
+  hs-source-dirs: src
   build-depends:
-    base >= 4.3 && < 5,
+    base >= 4.11 && < 5,
     half >= 0.2 && < 0.3,
     linear
 
