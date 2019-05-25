@@ -7,7 +7,7 @@ What works for me:
 
 ```
 brew install openexr
-cabal install --extra-lib-dirs=/usr/local/Cellar/openexr/2.3.0/lib/ --extra-include-dirs=/usr/local/Cellar/openexr/2.3.0/include/OpenEXR/
+cabal new-build
 ```
 
 Contact Information
